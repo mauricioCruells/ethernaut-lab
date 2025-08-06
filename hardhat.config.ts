@@ -1,4 +1,4 @@
-import { HardhatUserConfig, vars } from "hardhat/config";
+import { HardhatUserConfig, task, vars } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 
 const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
@@ -30,5 +30,13 @@ const config: HardhatUserConfig = {
     }
   },
 };
+
+task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
+  const accounts = await hre.ethers.getSigners();
+
+  for (const account of accounts) {
+    console.log(account.address);
+  }
+});
 
 export default config;
