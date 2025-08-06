@@ -1,6 +1,11 @@
 import { HardhatUserConfig, vars } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 
+const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
+const INFURA_API_KEY = vars.get("INFURA_API_KEY");
+const SEPOLIA_PRIVATE_KEY = vars.get("SEPOLIA_PRIVATE_KEY");
+
+
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   networks: {
@@ -8,8 +13,8 @@ const config: HardhatUserConfig = {
       chainId: 1337
     },
     sepolia: {
-      url: "https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID",
-      accounts: []
+      url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
+      accounts: [SEPOLIA_PRIVATE_KEY]
     }
   },
   solidity: "0.8.28",
@@ -20,7 +25,9 @@ const config: HardhatUserConfig = {
     artifacts: "./artifacts"
   },
   etherscan: {    
-    apiKey: vars.get("ETHERSCAN_API_KEY"),
+    apiKey: {
+      sepolia: ETHERSCAN_API_KEY,
+    }
   },
 };
 

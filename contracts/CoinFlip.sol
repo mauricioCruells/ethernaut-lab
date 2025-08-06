@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
+// Author: @mcruells.dev
+
 contract CoinFlip {
     uint256 public consecutiveWins;
     uint256 lastHash;
