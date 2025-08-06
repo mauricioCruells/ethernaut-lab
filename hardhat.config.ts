@@ -5,6 +5,7 @@ const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {
+      chainId: 1337
     },
     sepolia: {
       url: "https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID",
