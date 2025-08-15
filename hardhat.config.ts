@@ -28,7 +28,7 @@ const config: HardhatUserConfig = {
   //   apiKey: {
   //     sepolia: ETHERSCAN_API_KEY,
   //   }
-  },
+  // },
 };
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
