@@ -62,6 +62,6 @@ contract CoinFlipAttack {
 
     function attackCoinFlip() public {
         preCalculatedFlip = preCalculateFlip();
-        coinFlip.flip(preCalculatedFlip);
+        require(coinFlip.flip(preCalculatedFlip), "flip failed");
     }
 }
