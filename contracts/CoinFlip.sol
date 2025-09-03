@@ -39,9 +39,20 @@ contract CoinFlipAttack {
     bool public preCalculatedFlip;
     uint256 FACTOR =
         57896044618658097711785492504343953926634992332820282019728792003956564819968;
+    address public owner;
 
     constructor(address _coinFlipAddress) {
         coinFlip = CoinFlip(_coinFlipAddress);
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not owner");
+        _;
+    }
+
+    function changeTarget(address newTarget) public onlyOwner {
+        coinFlip = CoinFlip(newTarget);
     }
 
     function preCalculateFlip() public view returns (bool) {

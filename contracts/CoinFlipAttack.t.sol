@@ -75,4 +75,11 @@ contract CoinFlipAttackTest is Test {
 
         require(coinFlip.consecutiveWins() == 0);
     }
+
+    function test_AddressIsChanged() public { 
+        CoinFlip newCoinFlip = new CoinFlip();
+        coinFlipAttack.changeTarget(address(newCoinFlip));
+
+        require(address(coinFlipAttack.coinFlip()) != address(coinFlip));
+    }
 }

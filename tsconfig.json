@@ -7,7 +7,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "moduleResolution": "node16",
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@ignition/modules/*": ["ignition/modules/*"],
+    },
     // "target": "es2020",
     // "module": "esnext",
     // "esModuleInterop": true,
